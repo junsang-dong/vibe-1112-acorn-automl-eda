@@ -15,26 +15,33 @@ CSV 파일을 업로드하면 자동으로 데이터 분석과 머신러닝 모�
 
 ## 📦 설치 및 실행
 
-### 1. 의존성 설치
+### 🌐 온라인 버전 (Streamlit Cloud)
+**즉시 사용 가능**: [AutoML 데이터 분석 대시보드](https://share.streamlit.io/junsang-dong/vibe-1112-acorn-automl-eda/main/streamlit_app.py)
 
+### 💻 로컬 실행
+
+#### Flask 버전
 ```bash
+# 1. 의존성 설치
 pip install -r requirements.txt
-```
 
-### 2. 애플리케이션 실행
-
-```bash
-# 방법 1: 직접 실행
+# 2. 애플리케이션 실행
 python3 app.py
 
-# 방법 2: 실행 스크립트 사용
-./run.sh
+# 3. 웹 브라우저에서 접속
+# http://localhost:8080
 ```
 
-### 3. 웹 브라우저에서 접속
+#### Streamlit 버전
+```bash
+# 1. 의존성 설치
+pip install -r requirements.txt
 
-```
-http://localhost:8080
+# 2. Streamlit 앱 실행
+streamlit run streamlit_app.py
+
+# 3. 웹 브라우저에서 접속
+# http://localhost:8501
 ```
 
 > **참고**: macOS에서 포트 5000이 사용 중인 경우 자동으로 8080 포트로 실행됩니다.
@@ -86,7 +93,8 @@ http://localhost:8080
 ## 🛠️ 기술 스택
 
 ### 백엔드
-- **Flask**: 웹 프레임워크
+- **Flask**: 웹 프레임워크 (로컬 버전)
+- **Streamlit**: 웹 앱 프레임워크 (클라우드 버전)
 - **pandas**: 데이터 처리 및 분석
 - **scikit-learn**: 머신러닝 모델
 - **XGBoost**: 그래디언트 부스팅
@@ -95,23 +103,34 @@ http://localhost:8080
 - **scipy**: 통계 분석
 
 ### 프론트엔드
-- **HTML5/CSS3**: 반응형 웹 디자인
-- **JavaScript**: 동적 인터랙션
-- **Bootstrap 5**: UI 프레임워크
-- **Font Awesome**: 아이콘
-- **Chart.js**: 차트 시각화
+- **HTML5/CSS3**: 반응형 웹 디자인 (Flask 버전)
+- **JavaScript**: 동적 인터랙션 (Flask 버전)
+- **Bootstrap 5**: UI 프레임워크 (Flask 버전)
+- **Font Awesome**: 아이콘 (Flask 버전)
+- **Streamlit Components**: UI 컴포넌트 (Streamlit 버전)
+
+### 배포
+- **GitHub Pages**: 정적 사이트 호스팅
+- **Streamlit Cloud**: 클라우드 앱 호스팅
+- **GitHub Actions**: CI/CD 파이프라인
 
 ## 📁 파일 구조
 
 ```
 vibe-1112-acorn-automl-eda/
 ├── app.py                 # Flask 애플리케이션 메인 파일
+├── streamlit_app.py      # Streamlit 애플리케이션 메인 파일
 ├── requirements.txt       # Python 의존성
 ├── README.md             # 프로젝트 설명서
 ├── run.sh                # 실행 스크립트
 ├── test_data.py          # 테스트 데이터 생성 스크립트
 ├── templates/
-│   └── index.html        # 메인 웹 페이지
+│   └── index.html        # Flask 메인 웹 페이지
+├── .streamlit/
+│   └── config.toml       # Streamlit 설정 파일
+├── .github/
+│   └── workflows/
+│       └── deploy.yml    # GitHub Actions 배포 설정
 ├── uploads/              # 업로드된 파일 임시 저장소
 ├── churn.csv            # 예시 데이터 파일 (통신사 이탈)
 ├── sample_data.csv      # 테스트 데이터 파일
